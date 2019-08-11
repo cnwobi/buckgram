@@ -4,11 +4,18 @@
 <div class="container">
     <div class="row">
         <div class="col-3 p-5">
-            <img src="/storage/{{$user->profile->image}} " class="rounded-circle img-fluid w-100">
+          
+            <img src="{{$user->profile->profileImage()}} " class="rounded-circle img-fluid w-100">
+      
         </div>
         <div class="col-9 pt-5">
           <div class="d-flex justify-content-between align-items-baseline">
-              <h1>{{$user->username}}</h1>
+             
+              <div class="d-flex align-items-center mb-4">
+                    <h4>{{$user->username}}</h4>
+                  <follow-button user-id="{{$user->id}}" follows= "{{$follows}}"></follow-button>
+              </div>
+            
               @can('update', $user->profile)
               <a href="/p/create">Add New Post</a>    
               @endcan
@@ -20,8 +27,8 @@
             
           <div class = "d-flex">
               <div class="pr-5"><strong>{{$user->posts->count()}}</strong> posts</div>
-              <div class="pr-5"><strong>23k</strong> followers</div>
-              <div class="pr-5"><strong>212</strong> following</div>
+              <div class="pr-5"><strong>{{$user->profile->followers->count()}}</strong> followers</div>
+              <div class="pr-5"><strong>{{$user->following->count()}}</strong> following</div>
           </div>
           <div class="pt-4 font-weight-bold">{{$user->profile->title}}</div>
           <div>{{$user->profile->description}}</div>
@@ -38,12 +45,7 @@
             
         @endforeach
        
-        {{-- <div class="col-4">
-            <img src="https://instagram.fmel4-1.fna.fbcdn.net/vp/bfe4f59457987d607445a9405fe9942f/5DED6C12/t51.2885-15/sh0.08/e35/c0.81.887.887/s640x640/66420383_162375928225341_762635906960426989_n.jpg?_nc_ht=instagram.fmel4-1.fna.fbcdn.net" alt="" class="w-100 pt-4">
-        </div>
-         <div class="col-4">
-            <img src="https://instagram.fmel4-1.fna.fbcdn.net/vp/bfe4f59457987d607445a9405fe9942f/5DED6C12/t51.2885-15/sh0.08/e35/c0.81.887.887/s640x640/66420383_162375928225341_762635906960426989_n.jpg?_nc_ht=instagram.fmel4-1.fna.fbcdn.net" alt="" class="w-100 pt-4">
-        </div>  --}}
+      
     </div>
 </div>
 @endsection

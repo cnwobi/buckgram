@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('follow/{user}','FollowsController@store');
+
+Route::post('/','PostsController@index');
 Route::get('/p/create', 'PostController@create')->name('profile.create');
 Route::get('/p/{post}', 'PostController@show')->name('posts.show');
 Route::post('/p', 'PostController@store')/*->name('profile.store')*/;
